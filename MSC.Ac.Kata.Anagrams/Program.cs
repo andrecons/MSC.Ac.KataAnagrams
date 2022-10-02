@@ -23,19 +23,11 @@ namespace MSC.Ac.Kata.Anagrams
             // 1. Importare il file .txt
             AnagramBL anagramBL = new AnagramBL(ConsoleUtils.FileImport());
 
-
-            /*Test stampa parole importate*//*
-            foreach(Word singleWord in anagramBL.wordList)
-            {
-                Console.WriteLine(singleWord);
-            }
-            */
-
             // 2. Ricercare gli anagrammi
             anagramBL.FindAnagrams();
 
             // 3. Stampare le parole che sono anagrammi
-            //     l'una dell'altra
+            ConsoleUtils.PrintAnagrams(anagramBL);
 
             // 4. Trovare le parole più lunghe che sono anagrammi
 

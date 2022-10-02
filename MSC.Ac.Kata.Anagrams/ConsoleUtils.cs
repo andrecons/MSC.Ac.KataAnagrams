@@ -1,4 +1,5 @@
-﻿using MSC.Ac.KataAnagrams.Core.Entities;
+﻿using MSC.Ac.KataAnagrams.Core;
+using MSC.Ac.KataAnagrams.Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -75,5 +76,23 @@ namespace MSC.Ac.KataAnagrams.Client
             return wordList;
 
         }
+
+        /// <summary>
+        /// Prints all the anagrams
+        /// </summary>
+        /// <param name="anagramBL">The business logic from which to print the anagrams</param>
+        public static void PrintAnagrams(AnagramBL anagramBL)
+        {
+            Console.WriteLine("Sto stampando gli anagrammi.");
+            foreach(AnagramSet singleSet in anagramBL.anagramsSetsList)
+            {
+               foreach(Word word in singleSet.WordList)
+                {
+                    System.Console.Write(word.ToString() + " ");
+                }
+                Console.WriteLine("");
+            }
+        }
+
     }
 }
