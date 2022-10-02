@@ -7,4 +7,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MSC.Ac.KataAnagrams.Core\MSC.Ac.KataAnagrams.Core.csproj" />
+  </ItemGroup>
+
 </Project>

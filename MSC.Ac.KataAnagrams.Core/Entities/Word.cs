@@ -18,5 +18,10 @@ namespace MSC.Ac.KataAnagrams.Core.Entities
         {
             this.WordString = wordString;
         }
+
+        public override string ToString()
+        {
+            return $"{WordString}";
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MSC.Ac.KataAnagrams.Core.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,13 +14,19 @@ namespace MSC.Ac.KataAnagrams.Client
         /// <summary>
         /// Imports the file containing the words
         /// </summary>
-        public static void FileImport()
+        public static List<Word> FileImport()
         {
+            // Domanda: E' lecito aggiungengere la dipendenza ad una
+            // classe del Core all'interno di ConsoleUtils?
+
+            List<Word> wordList = new List<Word>();
             System.IO.StreamReader streamReader;
+
 
             try
             {
-                streamReader = System.IO.File.OpenText(@"..\..\..\InputFile\wordlist.txt");
+
+                streamReader = new StreamReader(@"..\..\..\InputFiles\wordlist.txt");
 
             }
             catch (Exception FileProblem)
@@ -33,7 +40,7 @@ namespace MSC.Ac.KataAnagrams.Client
                 // Senza return potrei potenzialmente arrivare alla
                 // successiva while, la cui condizione potrebbe
                 // dare errore in caso di streamReader nullo.
-                return;
+                return wordList;
             }
 
             // DOMANDA: la pre elaborazione di una stringa
@@ -48,14 +55,24 @@ namespace MSC.Ac.KataAnagrams.Client
             {
                 string rawString = singleLine;
 
-                // Pulizia stringa andrebbe separata
+                // Pulizia stringa andrebbe separata?
+                // TODO: aggiungere sostituzione accenti?
+
                 rawString = rawString.Replace("'", "");
                 rawString = rawString.ToLower();
-                // TODO: sostituire accenti
 
+                char[] rawCharArray = rawString.ToCharArray();
+                var normalizedArray = rawString.Normalize(NormalizationForm.FormC).ToCharArray();
+                rawString = new string(normalizedArray);
+
+
+                Word word = new Word(rawString);
+                wordList.Add(word);
 
                 
             }
+
+            return wordList;
 
         }
     }

@@ -1,4 +1,6 @@
 ﻿using MSC.Ac.KataAnagrams.Client;
+using MSC.Ac.KataAnagrams.Core;
+using MSC.Ac.KataAnagrams.Core.Entities;
 
 namespace MSC.Ac.Kata.Anagrams
 {
@@ -15,19 +17,29 @@ namespace MSC.Ac.Kata.Anagrams
              * containing the most words
              */
 
-            // 1. Importare il file .dat
-            ConsoleUtils.FileImport();
+            // 0. Generare un menu
+            // TODO: menu
 
-            // 2. Salvarlo in un oggetto locale
+            // 1. Importare il file .txt
+            AnagramBL anagramBL = new AnagramBL(ConsoleUtils.FileImport());
 
-            // 3. Ricercare gli anagrammi
 
-            // 4. Stampare le parole che sono anagrammi
+            /*Test stampa parole importate*//*
+            foreach(Word singleWord in anagramBL.wordList)
+            {
+                Console.WriteLine(singleWord);
+            }
+            */
+
+            // 2. Ricercare gli anagrammi
+            anagramBL.FindAnagrams();
+
+            // 3. Stampare le parole che sono anagrammi
             //     l'una dell'altra
 
-            // 5. Trovare le parole più lunghe che sono anagrammi
+            // 4. Trovare le parole più lunghe che sono anagrammi
 
-            // 6. Trovare il set più grande di anagrammi
+            // 5. Trovare il set più grande di anagrammi
         }
     }
 }
