@@ -52,7 +52,7 @@ namespace MSC.Ac.KataAnagrams.Client
 
             string singleLine;
 
-            while((singleLine = streamReader.ReadLine()) != null)
+            while ((singleLine = streamReader.ReadLine()) != null)
             {
                 string rawString = singleLine;
 
@@ -70,11 +70,52 @@ namespace MSC.Ac.KataAnagrams.Client
                 Word word = new Word(rawString);
                 wordList.Add(word);
 
-                
+
             }
 
             return wordList;
 
+        }
+
+        internal static void PrintBiggerAnagramsSet(AnagramBL anagramBL)
+        {
+
+            List<AnagramSet> anagramSetsList = anagramBL.anagramsSetsList;
+
+            int maxSize = 0;
+            foreach (AnagramSet singleAnagramSet in anagramSetsList)
+            {
+                if (singleAnagramSet.WordList.Count > maxSize)
+                {
+                    maxSize = singleAnagramSet.WordList.Count;
+                }
+            }
+            Console.WriteLine("#### Bigger set of anagrams ####");
+            foreach (AnagramSet singleAnagramSet in anagramSetsList)
+            {
+                if (singleAnagramSet.WordList.Count == maxSize)
+                {
+                    foreach(Word word in singleAnagramSet.WordList)
+                    {
+                        Console.Write(word.ToString() + " ");
+                    }
+                }
+            }
+
+
+        }
+
+        public static void PrintLongestAnagramsSet(AnagramBL anagramBL)
+        {
+            // Attenzione: in questo modo stampo solo un set!
+            // TODO: correggere stampa di un solo set
+
+            Console.WriteLine("##### Set with longest word ####");
+            AnagramSet maxAnagramSet = anagramBL.anagramsSetsList[anagramBL.indexMaxLenght];
+            foreach (Word word in maxAnagramSet.WordList)
+            {
+                Console.WriteLine(word + " ");
+            }
         }
 
         /// <summary>
@@ -84,9 +125,9 @@ namespace MSC.Ac.KataAnagrams.Client
         public static void PrintAnagrams(AnagramBL anagramBL)
         {
             Console.WriteLine("Sto stampando gli anagrammi.");
-            foreach(AnagramSet singleSet in anagramBL.anagramsSetsList)
+            foreach (AnagramSet singleSet in anagramBL.anagramsSetsList)
             {
-               foreach(Word word in singleSet.WordList)
+                foreach (Word word in singleSet.WordList)
                 {
                     System.Console.Write(word.ToString() + " ");
                 }

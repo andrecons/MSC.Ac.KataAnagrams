@@ -29,9 +29,14 @@ namespace MSC.Ac.Kata.Anagrams
             // 3. Stampare le parole che sono anagrammi
             ConsoleUtils.PrintAnagrams(anagramBL);
 
-            // 4. Trovare le parole più lunghe che sono anagrammi
+            // 4. Trovare il set di parole più lunghe che sono anagrammi
+            anagramBL.CalcSetWithLongestWord();
+
+            // 5. Stampare il set di parole più lunghe che sono anagrammi
+            ConsoleUtils.PrintLongestAnagramsSet(anagramBL);
 
             // 5. Trovare il set più grande di anagrammi
+            ConsoleUtils.PrintBiggerAnagramsSet(anagramBL);
         }
     }
 }

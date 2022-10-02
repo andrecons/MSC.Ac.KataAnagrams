@@ -7,6 +7,8 @@ namespace MSC.Ac.KataAnagrams.Core
         public List<Word> wordList { get; set; }
         public List<AnagramSet> anagramsSetsList { get; set; }
 
+        public int indexMaxLenght;
+
         public AnagramBL(List<Word> inputList)
         {
             wordList = inputList;
@@ -59,7 +61,7 @@ namespace MSC.Ac.KataAnagrams.Core
                         // - Sono diverse
                         // - Hanno la stessa lunghezza
                         // - I caretteri, ordinati, sono equivalenti
-                        // * E quindi sono Anagrammi *
+                        // - -> quindi sono Anagrammi
                         if (firstSortedString.Equals(secondSortedString))
                         {
                             //Console.Write($" {comparativeWord.ToString()}");
@@ -70,6 +72,32 @@ namespace MSC.Ac.KataAnagrams.Core
                 }
                 anagramsSetsList.Add(singleAnagramSet);
             }
+        }
+
+        public void CalcSetWithLongestWord()
+        {
+
+            // Assuming Lenght as the number of chars in word
+            // Assuming Size as the number of words in a set
+
+            int maxLenght = 0;
+            int indexWithMaxLenght;
+
+            for(int i = 0; i < anagramsSetsList.Count(); i++)
+            {
+                AnagramSet singleAnagramSet = anagramsSetsList[i];
+                
+                foreach (Word word in singleAnagramSet.WordList)
+                {
+                    if(word.ToString().Length > maxLenght)
+                    {
+                        maxLenght = word.ToString().Length;
+                        indexMaxLenght = i;
+                    }
+                }         
+
+            }
+            
         }
     }
 }
